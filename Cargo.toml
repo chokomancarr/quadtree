@@ -5,41 +5,15 @@ authors = ["James Adam Buckland <james.adam.buckland@gmail.com>"]
 edition = "2018"
 description = "Point/region Quadtree with support for overlapping regions."
 
-publish = true
-
-documentation = "https://docs.rs/quadtree_rs/"
-homepage = "https://github.com/ambuc/quadtree"
-repository = "https://github.com/ambuc/quadtree"
-
 readme = "README.md"
-
-keywords = ["quadtree", "spatial", "algorithms", "tree"]
-
-# Matching categories within https://crates.io/category_slugs
-categories = ["algorithms", "graphics", "visualization"]
 
 # SPDX 2.1 license expression. See https://spdx.org/licenses/
 license = "Apache-2.0"
 
-# One of: `actively-developed`, `passively-maintained`, `as-is`, `experimental`,
-# `looking-for-maintainer`, `deprecated`, `none`.
-maintenance = { status = "actively-developed" }
-
 [dependencies]
 num = "0.2"
 derive_builder = "0.7"
-serde = { version = "1.0.152", features = ["derive"], optional=true}
-bevy = { version = "0.12.1", optional = true }
+serde = { version = "1.0.218", features = ["derive"]}
 
 [features]
-serde = ["dep:serde"]
-bevy = ["dep:bevy"]
-
-
-# Run cargo tests and cargo-clippy as a precommit-hook, per the example in
-# https://github.com/rhysd/cargo-husky#customize-behavior.
-[dev-dependencies.cargo-husky]
-version = "1"
-default-features = false # Disable features which are enabled by default
-features = ["precommit-hook", "run-cargo-test", "run-cargo-clippy", "run-cargo-fmt"]
-
+verbose = []

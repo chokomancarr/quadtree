@@ -32,7 +32,6 @@ use crate::{
     types::StoreType,
 };
 use num::PrimInt;
-#[cfg(feature = "serde")]
 use serde::{
     Deserialize,
     Serialize,
@@ -42,7 +41,6 @@ use std::{
         HashMap,
         HashSet,
     },
-    default::Default,
     hash::Hash,
 };
 
@@ -75,12 +73,10 @@ use std::{
 /// [`.delete()`]: #method.delete
 // TODO(ambuc): Implement `.delete_by(anchor, dimensions, fn)`: `.retain()` is the inverse.
 // TODO(ambuc): Implement `FromIterator<(K, V)>` for `Quadtree`.
-#[cfg_attr(feature = "bevy", derive(bevy::prelude::Resource))]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Quadtree<U, V>
 where
-    U: PrimInt + Default,
+    U: PrimInt + Default + Clone,
 {
     inner: QTInner<U>,
     store: StoreType<U, V>,

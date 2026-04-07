@@ -15,7 +15,6 @@
 //! A point region in the tree.
 
 use num::PrimInt;
-#[cfg(feature = "serde")]
 use serde::{
     Deserialize,
     Serialize,
@@ -29,8 +28,7 @@ use std::{
 };
 
 /// A type representing a point in space. Should be passed by value.
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(PartialEq, Eq, Clone, Copy, Hash)]
+#[derive(PartialEq, Eq, Clone, Copy, Hash, Serialize, Deserialize)]
 pub struct Point<U> {
     pub x: U, // The x-coordinate of the point.
     pub y: U, // The y-coordinate of the point.

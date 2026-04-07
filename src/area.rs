@@ -17,7 +17,6 @@
 use crate::point;
 use derive_builder::Builder;
 use num::PrimInt;
-#[cfg(feature = "serde")]
 use serde::{
     Deserialize,
     Serialize,
@@ -36,8 +35,7 @@ use std::{
 ///   - The top-left anchor can be any valid `(U, U)` coordinate, positive or negative, in any
 ///   quadrant.
 ///   - The width and height must both be positive and nonzero.
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(PartialEq, Eq, Clone, Copy, Hash, Builder)]
+#[derive(PartialEq, Eq, Clone, Copy, Hash, Builder, Serialize, Deserialize)]
 #[builder(build_fn(validate = "Self::validate"))]
 pub struct Area<U>
 where

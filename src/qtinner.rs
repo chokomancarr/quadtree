@@ -19,7 +19,6 @@ use crate::{
     types::StoreType,
 };
 use num::PrimInt;
-#[cfg(feature = "serde")]
 use serde::{
     Deserialize,
     Serialize,
@@ -29,8 +28,7 @@ use std::{
     fmt::Debug,
 };
 
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub(crate) struct QTInner<U>
 where
     U: PrimInt + Default,

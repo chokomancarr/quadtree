@@ -20,12 +20,10 @@ use crate::{
     point::Point,
 };
 use num::PrimInt;
-#[cfg(feature = "serde")]
 use serde::{
     Deserialize,
     Serialize,
 };
-use std::default::Default;
 
 /// A region/value association in the [`Quadtree`].
 ///
@@ -65,11 +63,10 @@ use std::default::Default;
 ///
 /// [`Quadtree`]: ../struct.Quadtree.html
 // TODO(ambuc): Entry should hold Box<V> for better return-by-value semantics.
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Entry<U, V>
 where
-    U: PrimInt + Default,
+    U: PrimInt + Default + Clone,
 {
     region: Area<U>,
     value: V,
